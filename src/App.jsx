@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Navigation from './components/Navigation.jsx';
+import Navigation from './Components/Navigation.jsx';
 import HomePage from './Components/HomePage.jsx';
 import './App.css';
 
