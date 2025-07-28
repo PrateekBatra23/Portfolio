@@ -1,19 +1,23 @@
 import React from 'react';
 import { ChevronRight, ArrowRight } from 'lucide-react';
-
+import image1 from '../../data/image.png'; 
 const FeaturedProjects = ({ setCurrentPage }) => {
   const featuredProjects = [
     {
       title: 'Notes-App',
       description: 'Full-stack notes Application with advanced features',
       tech: ['React', 'Node.js', 'Mongodb'],
-      featured: true
+      featured: true,
+      github: 'https://github.com/PrateekBatra23/notes-app-frontend',
+      image: image1
     },
     {
       title: 'Personal Portfolio',
       description: 'Portfolio website showcasing my projects and skills',
       tech: ['React', 'CSS', 'HTML', 'Javascript'],
-      featured: false
+      featured: false,
+      github: 'https://github.com/PrateekBatra23/Portfolio',
+      image: image1
     }
   ];
 
@@ -40,11 +44,12 @@ const FeaturedProjects = ({ setCurrentPage }) => {
           {featuredProjects.map((project, idx) => (
             <div key={idx} className="project-card">
               <div className="project-image">
-                <p style={{ color: '#9ca3af', textAlign: 'center' }}>
-                  Project Screenshot
-                  <br />
-                  <span style={{ fontSize: '0.875rem', opacity: '0.6' }}>Add later</span>
-                </p>
+                <img 
+                  src={project.image} 
+                  alt={`${project.title} screenshot`}
+                  style={{ width: '100%', height: 'auto', borderRadius: '8px' }}
+                />
+                
               </div>
               
               <div className="project-content">
@@ -67,7 +72,7 @@ const FeaturedProjects = ({ setCurrentPage }) => {
                   ))}
                 </div>
                 
-                <button className="project-link hover-translate-x">
+                <button className="project-link hover-translate-x" onClick={() => window.open(project.github, '_blank')}>
                   <span>View Project</span>
                   <ArrowRight size={16} />
                 </button>

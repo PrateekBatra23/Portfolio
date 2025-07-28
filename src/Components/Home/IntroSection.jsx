@@ -1,15 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowRight, Play } from 'lucide-react';
+import pic1 from '../../data/pic1.jpg'; // Fixed path from components/home to data
 
-const HeroSection = () => {
+const IntroSection = ({ setCurrentPage }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+
   return (
     <section className="hero-section">
       <div className="hero-gradient-overlay"></div>
       
       <div className="hero-content">
-        <div className="hero-grid" style={{ gridTemplateColumns: window.innerWidth >= 1024 ? '1fr 1fr' : '1fr' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <div className="hero-grid" style={{ gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr' }}>
+          <div className="hero-text-content">
+            <div className="hero-text-inner">
               <div className="availability-badge">
                 <div className="availability-dot"></div>
                 <span className="availability-text">Available for new opportunities</span>
@@ -29,29 +44,40 @@ const HeroSection = () => {
             </div>
             
             <div className="hero-buttons">
-              <button className="hero-button-primary hover-scale">
-                <span>View My Work</span>
+              <button 
+                className="hero-button-primary hover-scale"
+                onClick={() => setCurrentPage('projects')}
+              >
+                View My Work
                 <ArrowRight className="transition-transform" size={20} />
               </button>
-              
             </div>
-
-           
           </div>
           
-          {/* Profile Image with Premium Frame */}
+          {/* Profile Image with Floating Orb Animation */}
           <div className="profile-container animate-slide-in-right">
-            <div className="profile-wrapper">
-              {/* Animated Background Elements */}
-              <div className="profile-bg-1"></div>
-              <div className="profile-bg-2"></div>
+            <div className="profile-wrapper-new">
+              {/* Floating Orbs */}
+              <div className="floating-orb orb-1"></div>
+              <div className="floating-orb orb-2"></div>
+              <div className="floating-orb orb-3"></div>
+              <div className="floating-orb orb-4"></div>
+              
+              {/* Rotating Ring */}
+              <div className="rotating-ring"></div>
+              
+              {/* Pulsing Glow */}
+              <div className="pulsing-glow"></div>
               
               {/* Main Image Container */}
-              <div className="profile-main">
-                <div className="profile-overlay"></div>
-                <div className="profile-placeholder">
-                  <div style={{ fontSize: '1.125rem', fontWeight: '500', marginBottom: '8px' }}>Your Professional Photo</div>
-                  <div style={{ fontSize: '0.875rem', opacity: '0.75' }}>Replace this placeholder</div>
+              <div className="profile-main-new">
+                <div className="profile-border-animation"></div>
+                <div className="profile-image-container">
+                  <img 
+                    src={pic1} 
+                    alt="Prateek Batra"
+                    className="profile-image"
+                  />
                 </div>
               </div>
             </div>
@@ -62,4 +88,4 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+export default IntroSection;

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navigation from './Components/Navigation.jsx';
 import HomePage from './Components/HomePage.jsx';
+import ProjectsPage from './Components/ProjectsPage.jsx';
 import './App.css';
 
 const Portfolio = () => {
@@ -24,8 +25,9 @@ const Portfolio = () => {
         scrollY={scrollY}
       />
       
-      {/* FIXED: Removed app-container wrapper */}
-      <HomePage setCurrentPage={setCurrentPage} />
+      
+      {currentPage === 'home' && <HomePage setCurrentPage={setCurrentPage} />}
+      {currentPage === 'projects' && <ProjectsPage />}
     </div>
   );
 };
