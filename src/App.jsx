@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navigation from './Components/Navigation.jsx';
 import HomePage from './Components/HomePage.jsx';
 import ProjectsPage from './Components/ProjectsPage.jsx';
+import AboutPage from './Components/AboutPage.jsx';
 import './App.css';
 
 const Portfolio = () => {
@@ -25,9 +26,9 @@ const Portfolio = () => {
         scrollY={scrollY}
       />
       
-      
       {currentPage === 'home' && <HomePage setCurrentPage={setCurrentPage} />}
       {currentPage === 'projects' && <ProjectsPage />}
+      {currentPage === 'about' && <AboutPage />}
     </div>
   );
 };
